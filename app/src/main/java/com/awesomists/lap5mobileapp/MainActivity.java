@@ -1,10 +1,12 @@
 package com.awesomists.lap5mobileapp;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -38,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "Helloo, This is Nasruddin shah from Awesomists");
+                shareIntent.setType("image/png");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Lap5RentaCar");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "I’m using Lap 5 Rent A Car. It’s smooth, easy, awesome!");
+//                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://com.awesomists.lap5mobileapp/drawable/la5_app_final"));
+                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                        getResources().getResourcePackageName(R.drawable.lap_5_launcher) + '/'
+                        + getResources().getResourceTypeName(R.drawable.lap_5_launcher) + '/'
+                        + getResources().getResourceEntryName(R.drawable.lap_5_launcher)));
                 startActivity(Intent.createChooser(shareIntent, "Send Message"));
             }
         });
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     protected void exitByBackKey() {
 
         AlertDialog alertbox = new AlertDialog.Builder(this)
-                .setMessage("Do you want to exit application?")
+                .setMessage("Close App?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                     // do something when the button is clicked
@@ -88,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("http://awesomists.com/yazad/");
+        webview.loadUrl("http://192.168.1.102/awesomists/yazad/");
     }
 
     public void ShowNoInternet() {

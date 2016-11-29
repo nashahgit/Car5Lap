@@ -1,12 +1,10 @@
 package com.awesomists.lap5mobileapp;
 
 import android.app.AlertDialog;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
             ShowNoInternet();
         }
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                shareIntent.setType("image/png");
+                shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Lap5RentaCar");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "I’m using Lap 5 Rent A Car. It’s smooth, easy, awesome!");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "I’m using Lap 5 Rent A Car. It’s smooth, easy, awesome! No charge to cancel! Try it! http://lap5rentacar.me ");
 //                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://com.awesomists.lap5mobileapp/drawable/la5_app_final"));
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
-                        getResources().getResourcePackageName(R.drawable.lap_5_launcher) + '/'
-                        + getResources().getResourceTypeName(R.drawable.lap_5_launcher) + '/'
-                        + getResources().getResourceEntryName(R.drawable.lap_5_launcher)));
+//                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+//                        getResources().getResourcePackageName(R.drawable.lap_5_launcher) + '/'
+//                        + getResources().getResourceTypeName(R.drawable.lap_5_launcher) + '/'
+//                        + getResources().getResourceEntryName(R.drawable.lap_5_launcher)));
                 startActivity(Intent.createChooser(shareIntent, "Send Message"));
             }
         });
@@ -88,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isInternetAvailable(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+        return connectivityManager.getActiveNetworkInfo() != null
+                && connectivityManager.getActiveNetworkInfo().isConnected()
+                && connectivityManager.getActiveNetworkInfo().isAvailable();
     }
 
     public void InitializeWeb() {
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("http://192.168.1.102/awesomists/yazad/");
+        webview.loadUrl("http://lap5rentacar.com/yazad/");
     }
 
     public void ShowNoInternet() {

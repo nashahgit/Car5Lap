@@ -10,14 +10,14 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main2"
     tools:context="com.awesomists.lap5mobileapp.Main2Activity"
-    android:background="@color/colorPrimary">
+    android:background="#FFFFFF">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No Internet, Please check."
         android:textSize="34sp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textView"
         android:autoText="false"
         android:gravity="center"
@@ -28,7 +28,7 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:id="@+id/imageView"
-        android:src="@drawable/lap5_logo_web"
+        android:src="@drawable/lap5_final_logo"
         android:layout_above="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="87dp" />
@@ -37,8 +37,8 @@
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:text="Try Again"
-        android:textColor="@color/colorPrimary"
-        android:backgroundTint="#ffffff"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#000080"
         android:id="@+id/try_button"
         android:layout_marginTop="73dp"
         android:layout_below="@+id/textView"

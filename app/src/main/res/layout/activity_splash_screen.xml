@@ -14,7 +14,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"
-        android:src="@drawable/rentacar"
+        android:src="@drawable/rentacar_resized"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
